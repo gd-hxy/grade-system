@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 13742
-  Date: 2019/7/4
-  Time: 23:02
+  Date: 2019/7/6
+  Time: 20:12
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -41,11 +41,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2 text">
-          <h1><strong>高校学生成绩管理系统</strong>登录页面</h1>
+          <h1><strong>高校学生成绩管理系统</strong>注册页面</h1>
           <div class="description">
-            <p>
-              这是软工1704班的<a href="#"><strong>黄潇扬</strong></a>, 开发的高效学生成绩管理系统，学号是201706120102.
-            </p>
           </div>
         </div>
       </div>
@@ -53,18 +50,18 @@
         <div class="col-sm-6 col-sm-offset-3 form-box">
           <div class="form-top">
             <div class="form-top-left">
-              <h3>在这里输入你的用户名和密码！</h3>
-              <p>如果你还没有开通过账户，先点击下方的注册按钮！</p>
+              <h3>在这里输入你的学生/教师编号和密码！</h3>
+              <p>如果你已经开通过账户，请点击下方的返回按钮！</p>
             </div>
             <div class="form-top-right">
               <i class="fa fa-lock"></i>
             </div>
           </div>
           <div class="form-bottom">
-            <form role="form" action="userLoginServlet.do" method="post" class="login-form">
+            <form role="form" action="userLoginServlet.do" method="get" class="login-form">
               <div class="form-group">
                 <label class="sr-only" for="form-username">Username</label>
-                <input type="text" name="form-username" placeholder="用户名..."
+                <input type="text" name="form-username" placeholder="学生/教师编号..."
                        class="form-username form-control" id="form-username">
               </div>
               <div class="form-group">
@@ -73,8 +70,8 @@
                        class="form-password form-control" id="form-password">
               </div>
               <div class="btn-block" style="display: flex;">
-                <button type="submit" class="btn" style="margin: 10px;">登录</button>
-                <button type="button" class="btn" style="margin: 10px;" onclick="register()">注册</button>
+                <button type="submit" class="btn" style="margin: 10px;">注册</button>
+                <button type="button" class="btn" style="margin: 10px;" onclick="back()">返回</button>
               </div>
             </form>
           </div>
@@ -107,27 +104,10 @@
 <script src="${pageContext.servletContext.contextPath}/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/js/jquery.backstretch.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/js/scripts.js"></script>
-
-<%
-  HttpSession session1 = request.getSession();
-  String message = (String) session1.getAttribute("message");
-  if (message != null && message != "") {
-%>
 <script>
-    alert(message);
-</script>
-<%
-    message = "";
-    session1.setAttribute("message", message);
-  }
-%>
-
-
-<script>
-    function register() {
-        window.location.href = "register.jsp";
+    function back() {
+        window.location.href = "index.jsp";
     }
 </script>
 </body>
-
 </html>
