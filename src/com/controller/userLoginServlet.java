@@ -21,12 +21,15 @@ public class userLoginServlet extends HttpServlet {
         String password = request.getParameter("form-password");
         LoginDao loginDao = new LoginDao();
         if (loginDao.studentLogin(username, password)) {
+            session.setAttribute("username", username);
             RequestDispatcher rd = request.getRequestDispatcher("student.jsp");
             rd.forward(request, response);
         } else if (loginDao.teacherLogin(username, password)) {
+            session.setAttribute("username", username);
             RequestDispatcher rd = request.getRequestDispatcher("teacher.jsp");
             rd.forward(request, response);
         } else if (loginDao.AdminLogin(username, password)) {
+            session.setAttribute("username", username);
             RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
             rd.forward(request, response);
         } else {

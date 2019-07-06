@@ -21,10 +21,14 @@
 
   <!-- Favicon and touch icons -->
   <link rel="shortcut icon" href="${pageContext.servletContext.contextPath}/assets/ico/favicon.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-57-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-144-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-114-precomposed.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72"
+        href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-72-precomposed.png">
+  <link rel="apple-touch-icon-precomposed"
+        href="${pageContext.servletContext.contextPath}/assets/ico/apple-touch-icon-57-precomposed.png">
 
 </head>
 
@@ -57,7 +61,7 @@
             </div>
           </div>
           <div class="form-bottom">
-            <form role="form" action="" method="post" class="login-form">
+            <form role="form" action="userLoginServlet.do" method="post" class="login-form">
               <div class="form-group">
                 <label class="sr-only" for="form-username">Username</label>
                 <input type="text" name="form-username" placeholder="用户名..."
@@ -69,8 +73,8 @@
                        class="form-password form-control" id="form-password">
               </div>
               <div class="btn-block" style="display: flex;">
-                <button type="button" class="btn" style="margin: 10px;" onclick="login()">登录</button>
-                <button type="submit" class="btn" style="margin: 10px;">注册</button>
+                <button type="submit" class="btn" style="margin: 10px;">登录</button>
+                <button type="button" class="btn" style="margin: 10px;" onclick="register()">注册</button>
               </div>
             </form>
           </div>
@@ -104,17 +108,24 @@
 <script src="${pageContext.servletContext.contextPath}/assets/js/jquery.backstretch.min.js"></script>
 <script src="${pageContext.servletContext.contextPath}/assets/js/scripts.js"></script>
 
-
+<%
+  HttpSession session1 = request.getSession();
+  String message = (String) session1.getAttribute("message");
+  if (message != null && message != "") {
+%>
+<script>
+    alert(message);
+</script>
+<%
+    message = "";
+    session1.setAttribute("message", message);
+  }
+%>
 
 
 <script>
-    function login() {
-        var username = document.getElementById("form-username").value;
-        var password = document.getElementById("form-password").value;
-        if (username === "admin" && password === "admin")
-            window.location.href = "Hxy'sAdmin.html";
-        else
-            alert("您输入的账号或密码错误，请重新输入！");
+    function register() {
+        window.location.href = "register.jsp";
     }
 </script>
 </body>

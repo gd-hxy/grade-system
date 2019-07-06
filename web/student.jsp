@@ -114,6 +114,9 @@
         </ul>
       </nav>
     </div>
+    <div class="row J_mainContent" id="content-main">
+      <iframe id="J_iframe" width="100%" height="100%" src="rank.jsp" frameborder="0" data-id="index_v1.html" seamless></iframe>
+    </div>
   </div>
   <!--右侧部分结束-->
 </div>
