@@ -47,7 +47,7 @@
             </form>
           </div>
           <c:choose>
-            <c:when test="${not empty studentArrayList}">
+            <c:when test="${not empty studentArrayLists}">
               <table class="table table-striped table-bordered table-hover">
                 <thead>
                 <tr>
@@ -61,7 +61,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${studentArrayList}" var="student">
+                <c:forEach items="${studentArrayLists}" var="student">
                   <tr>
                     <td>${student.getSno()}</td>
                     <td>${student.getClassNo()}</td>

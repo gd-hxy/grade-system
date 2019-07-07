@@ -68,7 +68,7 @@
               </table>
             </c:when>
             <c:otherwise>
-              <div class="lead text-gray-800 text-center">暂无课程信息</div>
+              <div class="lead text-gray-800 text-center">暂无成绩信息</div>
             </c:otherwise>
           </c:choose>
         </div>

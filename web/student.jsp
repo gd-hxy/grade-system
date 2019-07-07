@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title> Hxy's Admin</title>
+  <title>高校学生成绩管理系统</title>
 
   <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
@@ -32,12 +32,12 @@
                                 <span class="clear">
                                     <span class="block m-t-xs" style="font-size:20px;">
                                         <i class="fa fa-spin fa-gear"></i>
-                                        <strong class="font-bold">Hxy's Admin</strong>
+                                        <strong class="font-bold">学生用户界面</strong>
                                     </span>
                                 </span>
             </a>
           </div>
-          <div class="logo-element">Hxy's Admin
+          <div class="logo-element">学生用户界面
           </div>
         </li>
         <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
@@ -54,7 +54,7 @@
               <a class="J_menuItem" href="rank.jsp">成绩及名次查询</a>
             </li>
             <li>
-              <a class="J_menuItem" href="courseAndCredit.jsp">选修课程按学年查询</a>
+              <a class="J_menuItem" href="courseAndCredit.jsp">按学期查询选修课程</a>
             </li>
             <li>
               <a class="J_menuItem" href="allCourseSearch.jsp">全部选修课程查询</a>
@@ -107,7 +107,7 @@
               <li><a href="#"><i class="fa fa-gear fa-fw"></i>设置</a>
               </li>
               <li class="divider"></li>
-              <li><a href="index.html"><i class="fa fa-sign-out fa-fw"></i>注销</a>
+              <li><a href="index.jsp"><i class="fa fa-sign-out fa-fw"></i>注销</a>
               </li>
             </ul>
           </li>

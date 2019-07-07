@@ -85,7 +85,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-8 col-sm-offset-3">
-              <button id="btn" class="btn btn-primary" type="submit">提交</button>
+              <button id="btn" class="btn btn-primary" type="submit">查询</button>
             </div>
           </div>
         </form>

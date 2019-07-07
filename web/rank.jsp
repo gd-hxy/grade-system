@@ -50,6 +50,7 @@
                     title="请选择"
                     required
                 >
+                  <option value="" name="term">请选择</option>
                   <option value="2018_1" name="term">2018学年上学期</option>
                   <option value="2018_2" name="term">2018学年下学期</option>
                   <option value="2019_1" name="term">2019学年上学期</option>

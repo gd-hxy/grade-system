@@ -20,8 +20,8 @@ public class searchAllMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         StudentDao studentDao = new StudentDao();
-        ArrayList<Student> studentArrayList = studentDao.findAllStudent();
-        session.setAttribute("studentArrayList", studentArrayList);
+        ArrayList<Student> studentArrayLists = studentDao.findAllStudent();
+        session.setAttribute("studentArrayLists", studentArrayLists);
         RequestDispatcher rd = request.getRequestDispatcher("selectAllStudent.jsp");
         rd.forward(request, response);
     }
@@ -29,8 +29,8 @@ public class searchAllMessageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         SearchDao searchDao = new SearchDao();
-        ArrayList<Teacher> teacherArrayList = searchDao.findAllTeacher();
-        session.setAttribute("teacherArrayList", teacherArrayList);
+        ArrayList<Teacher> teacherArrayLists = searchDao.findAllTeacher();
+        session.setAttribute("teacherArrayLists", teacherArrayLists);
         RequestDispatcher rd = request.getRequestDispatcher("selectAllTeacher.jsp");
         rd.forward(request, response);
     }
