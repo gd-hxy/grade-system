@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.SearchDao;
 import com.dao.StudentDao;
 import com.model.Student;
 
@@ -27,6 +28,14 @@ public class passChangeServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        String tno = (String)session.getAttribute("username");
+        String oldPass = request.getParameter("oldPass");
+        String newPass = request.getParameter("newPass");
+        SearchDao searchDao = new SearchDao();
+        boolean isSuccess = searchDao.teacherPassChange(tno, oldPass, newPass);
+        session.setAttribute("isSuccess", isSuccess);
+        RequestDispatcher rd = request.getRequestDispatcher("teacherPassChange.jsp");
+        rd.forward(request, response);
     }
 }

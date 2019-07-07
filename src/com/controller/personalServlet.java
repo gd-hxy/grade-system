@@ -1,7 +1,9 @@
 package com.controller;
 
+import com.dao.SearchDao;
 import com.dao.StudentDao;
 import com.model.Student;
+import com.model.Teacher;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +27,12 @@ public class personalServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        HttpSession session = request.getSession();
+        String tno = (String)session.getAttribute("username");
+        SearchDao searchDao = new SearchDao();
+        Teacher teacher = searchDao.findTeacherById(tno);
+        session.setAttribute("teacher", teacher);
+        RequestDispatcher rd = request.getRequestDispatcher("teacherMessage.jsp");
+        rd.forward(request, response);
     }
 }

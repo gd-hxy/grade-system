@@ -2,10 +2,7 @@ package com.dao;
 
 import com.model.Student;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class StudentDao extends BaseDao {
 
@@ -106,6 +103,29 @@ public class StudentDao extends BaseDao {
             pstmt.setString(3, oldPass);
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean insertGrade(String sno, String cno, String cname, String term, float grade){
+        String insertSql = "INSERT INTO huangxy_Select08(hxy_Sno08, hxy_Cno08, hxy_grade08) VALUES(?,?,?)";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(insertSql);
+            pstmt.setString(1, sno);
+            pstmt.setString(2, cno);
+            pstmt.setFloat(3, grade);
+            pstmt.executeUpdate();
+            CallableStatement callableStatement = con.prepareCall("{call PRO_countCreditAUTO(?,?,?,?,?)}");
+            callableStatement.setString(1, sno);
+            callableStatement.setString(2, cno);
+            callableStatement.setString(3, cname);
+            callableStatement.setString(4, term);
+            callableStatement.setFloat(5, grade);
+            callableStatement.execute();
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

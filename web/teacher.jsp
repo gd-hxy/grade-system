@@ -66,7 +66,19 @@
           </a>
           <ul class="nav nav-second-level">
             <li>
-              <a class="J_menuItem" href="#">学生生源地查询</a>
+              <a class="J_menuItem" href="studentHome.jsp">学生生源地查询</a>
+            </li>
+          </ul>
+        </li>
+        <li class="line dk"></li>
+        <li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
+          <span class="ng-scope">教师操作</span>
+        </li>
+        <li>
+          <a href="#"><i class="fa fa-key"></i> <span class="nav-label">录入功能</span>
+            <span class="fa arrow"></span></a>
+          <ul class="nav nav-second-level">
+            <li><a class="J_menuItem" href="insertGrade.jsp">授课成绩录入</a>
             </li>
           </ul>
         </li>
@@ -78,9 +90,9 @@
           <a href="#"><i class="fa fa-key"></i> <span class="nav-label">个人信息</span>
             <span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
-            <li><a class="J_menuItem" href="#">教师账户密码修改</a>
+            <li><a class="J_menuItem" href="teacherPassChange.jsp">教师账户密码修改</a>
             </li>
-            <li><a class="J_menuItem" href="#">个人信息查看</a>
+            <li><a class="J_menuItem" href="teacherMessage.jsp">个人信息查看</a>
             </li>
           </ul>
         </li>

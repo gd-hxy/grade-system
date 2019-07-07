@@ -10,6 +10,7 @@ public class Student implements Serializable {
     private int Sage;
     private String Shome;
     private float Scredit;
+    private int area;
 
     public Student() {
     }
@@ -80,4 +81,11 @@ public class Student implements Serializable {
         Scredit = scredit;
     }
 
+    public int getArea() {
+        return area;
+    }
+
+    public void setArea(int area) {
+        this.area = area;
+    }
 }

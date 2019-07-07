@@ -3,7 +3,7 @@ package com.model;
 public class Teacher {
     private String Tno;
     private String Tname;
-    private char Tgender;
+    private String Tgender;
     private int Tage;
     private String Ttitle;
     private String Tphone;
@@ -35,11 +35,11 @@ public class Teacher {
         Tname = tname;
     }
 
-    public char getTgender() {
+    public String getTgender() {
         return Tgender;
     }
 
-    public void setTgender(char tgender) {
+    public void setTgender(String tgender) {
         Tgender = tgender;
     }
 

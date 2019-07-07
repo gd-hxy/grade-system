@@ -1,12 +1,14 @@
 package com.dao;
 
 import com.model.Rank;
+import com.model.Student;
 import com.model.Teacher;
 import com.model.classCourse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SearchDao extends BaseDao {
@@ -163,5 +165,69 @@ public class SearchDao extends BaseDao {
             return null;
         }
         return teacherArrayList;
+    }
+
+    public ArrayList<Student> searchStudentHome(){
+        ArrayList<Student> studentArrayList = new ArrayList<Student>();
+        String sql = "SELECT * FROM areaStudentNumber";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rst = pstmt.executeQuery();
+            while (rst.next()) {
+                Student student = new Student();
+                student.setShome(rst.getString(1));
+                student.setArea(rst.getInt(2));
+                studentArrayList.add(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return studentArrayList;
+    }
+
+    public boolean teacherPassChange(String tno, String oldPass, String newPass){
+        String changeSql = "UPDATE huangxy_TeacherLogin08 SET hxy_Tpass08 = ? WHERE hxy_Taccount08 = ? and hxy_Tpass08 = ?";
+        Connection con = null;
+        try {
+            con = baseDao.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            PreparedStatement pstmt = con.prepareStatement(changeSql);
+            pstmt.setString(1, newPass);
+            pstmt.setString(2, tno);
+            pstmt.setString(3, oldPass);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public Teacher findTeacherById(String tno){
+        String sql = "SELECT * FROM huangxy_Teacher08 WHERE hxy_Tno08 = ?";
+        Teacher teacher = new Teacher();
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, tno);
+            ResultSet rst = pstmt.executeQuery();
+            if (rst.next()) {
+                teacher.setTno(rst.getString(1));
+                teacher.setTname(rst.getString(2));
+                teacher.setTgender(rst.getString(3));
+                teacher.setTage(rst.getInt(4));
+                teacher.setTtitle(rst.getString(5));
+                teacher.setTphone(rst.getString(6));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return teacher;
     }
 }
