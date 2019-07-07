@@ -3,23 +3,24 @@ package com.dao;
 import com.model.Student;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class StudentDao extends BaseDao {
 
     BaseDao baseDao = new BaseDao();
 
-    public boolean addStudent(Student student) {
+    public boolean addStudent(String sno, String classNo, String sname, String sgender, int sage, String shome, float credit) {
         String sql = "INSERT INTO huangxy_Student08(hxy_Sno08, hxy_classNo08, hxy_Sname08, hxy_Sgender08, hxy_Sage08, hxy_Shome08, hxy_Scredit08) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             Connection con = baseDao.getConnection();
             PreparedStatement pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, student.getSno());
-            pstmt.setString(2, student.getClassNo());
-            pstmt.setString(3, student.getSname());
-            pstmt.setString(4, student.getSgender());
-            pstmt.setInt(5, student.getSage());
-            pstmt.setString(6, student.getShome());
-            pstmt.setFloat(7, student.getScredit());
+            pstmt.setString(1, sno);
+            pstmt.setString(2, classNo);
+            pstmt.setString(3, sname);
+            pstmt.setString(4, sgender);
+            pstmt.setInt(5, sage);
+            pstmt.setString(6, shome);
+            pstmt.setFloat(7, credit);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,20 +53,45 @@ public class StudentDao extends BaseDao {
         return student;
     }
 
+    public ArrayList<Student> findAllStudent(){
+        String sql = "SELECT * FROM huangxy_Student08";
+        ArrayList<Student> studentArrayList = new ArrayList<>();
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rst = pstmt.executeQuery();
+            while(rst.next()){
+                Student student = new Student();
+                student.setSno(rst.getString("hxy_Sno08"));
+                student.setClassNo(rst.getString("hxy_classNo08"));
+                student.setSname(rst.getString("hxy_Sname08"));
+                student.setSgender(rst.getString("hxy_Sgender08"));
+                student.setSage(rst.getInt("hxy_Sage08"));
+                student.setShome(rst.getString("hxy_Shome08"));
+                student.setScredit(rst.getFloat("hxy_Scredit08"));
+                studentArrayList.add(student);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return studentArrayList;
+    }
 
-    public boolean updataStudent(Student student) {
+
+    public boolean updataStudent(String sno, String classNo, String sname, String gender, int age, String shome, float credit) {
         String updateSql = "UPDATE huangxy_Student08 SET hxy_Sno08 = ?, hxy_classNo08 = ?, hxy_Sname08 = ?, hxy_Sgender08 = ?, hxy_Sage08 = ?, hxy_Shome08 = ?, hxy_Scredit08 = ? WHERE hxy_Sno08 = ?";
         try {
             Connection con = baseDao.getConnection();
             PreparedStatement pstmt = con.prepareStatement(updateSql);
-            pstmt.setString(1, student.getSno());
-            pstmt.setString(2, student.getClassNo());
-            pstmt.setString(3, student.getSname());
-            pstmt.setString(4, student.getSgender());
-            pstmt.setInt(5, student.getSage());
-            pstmt.setString(6, student.getShome());
-            pstmt.setFloat(7, student.getScredit());
-            pstmt.setString(8, student.getSno());
+            pstmt.setString(1, sno);
+            pstmt.setString(2, classNo);
+            pstmt.setString(3, sname);
+            pstmt.setString(4, gender);
+            pstmt.setInt(5, age);
+            pstmt.setString(6, shome);
+            pstmt.setFloat(7, credit);
+            pstmt.setString(8, sno);
             pstmt.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

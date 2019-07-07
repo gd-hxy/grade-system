@@ -230,4 +230,67 @@ public class SearchDao extends BaseDao {
         }
         return teacher;
     }
+
+    public ArrayList<Teacher> findAllTeacher(){
+        String sql = "SELECT * FROM huangxy_Teacher08";
+        ArrayList<Teacher> teacherArrayList = new ArrayList<>();
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            ResultSet rst = pstmt.executeQuery();
+            while(rst.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTno(rst.getString(1));
+                teacher.setTname(rst.getString(2));
+                teacher.setTgender(rst.getString(3));
+                teacher.setTage(rst.getInt(4));
+                teacher.setTtitle(rst.getString(5));
+                teacher.setTphone(rst.getString(6));
+                teacherArrayList.add(teacher);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return teacherArrayList;
+    }
+
+    public boolean addTeacher(String tno, String tname, String tgender, int age, String title, String phone){
+        String sql = "INSERT INTO huangxy_Teacher08(hxy_Tno08, hxy_Tname08, hxy_Tgender08, hxy_Tage08, hxy_Ttitle08, hxy_Tphone08) VALUES(?, ?, ?, ?, ?, ?)";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, tno);
+            pstmt.setString(2, tname);
+            pstmt.setString(3, tgender);
+            pstmt.setInt(4, age);
+            pstmt.setString(5, title);
+            pstmt.setString(6, phone);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean updateTeacher(String tno, String tname, String tgender, int age, String title, String phone){
+        String updateSql = "UPDATE huangxy_Teacher08 SET hxy_Tno08 = ?, hxy_Tname08 = ?, hxy_Tgender08 = ?, hxy_Tage08 = ?, hxy_Ttitle08 = ?, hxy_Tphone08 = ? WHERE hxy_Tno08 = ?";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(updateSql);
+            pstmt.setString(1, tno);
+            pstmt.setString(2, tname);
+            pstmt.setString(3, tgender);
+            pstmt.setInt(4, age);
+            pstmt.setString(5, title);
+            pstmt.setString(6, phone);
+            pstmt.setString(7, tno);
+            pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 }
