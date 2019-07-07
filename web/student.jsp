@@ -51,13 +51,13 @@
           </a>
           <ul class="nav nav-second-level">
             <li>
-              <a class="J_menuItem" href="form_validate.html">成绩及名次查询</a>
+              <a class="J_menuItem" href="rank.jsp">成绩及名次查询</a>
             </li>
             <li>
-              <a class="J_menuItem" href="#">选修课程按学年查询</a>
+              <a class="J_menuItem" href="courseAndCredit.jsp">选修课程按学年查询</a>
             </li>
             <li>
-              <a class="J_menuItem" href="#">全部选修课程查询</a>
+              <a class="J_menuItem" href="allCourseSearch.jsp">全部选修课程查询</a>
             </li>
           </ul>
         </li>
@@ -69,7 +69,7 @@
           </a>
           <ul class="nav nav-second-level">
             <li>
-              <a class="J_menuItem" href="#">按学年查询</a>
+              <a class="J_menuItem" href="courseOfClass.jsp">按学期查询</a>
             </li>
           </ul>
         </li>
@@ -115,7 +115,8 @@
       </nav>
     </div>
     <div class="row J_mainContent" id="content-main">
-      <iframe id="J_iframe" width="100%" height="100%" src="rank.jsp" frameborder="0" data-id="index_v1.html" seamless></iframe>
+      <iframe id="J_iframe" width="100%" height="100%" src="rank.jsp" frameborder="0" data-id="index_v1.html"
+              seamless></iframe>
     </div>
   </div>
   <!--右侧部分结束-->
