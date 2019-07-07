@@ -78,12 +78,12 @@
           <span class="ng-scope">用户相关</span>
         </li>
         <li>
-          <a href="#"><i class="fa fa-key"></i> <span class="nav-label">修改密码</span>
+          <a href="#"><i class="fa fa-key"></i> <span class="nav-label">个人信息</span>
             <span class="fa arrow"></span></a>
           <ul class="nav nav-second-level">
-            <li><a class="J_menuItem" href="#">学生账户密码修改</a>
+            <li><a class="J_menuItem" href="studentPassChange.jsp">学生账户密码修改</a>
             </li>
-            <li><a class="J_menuItem" href="#">个人信息查看</a>
+            <li><a class="J_menuItem" href="studentMessage.jsp">个人信息查看</a>
             </li>
           </ul>
         </li>

@@ -1,6 +1,4 @@
-<%@ page import="java.awt.*" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="com.model.Rank" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: 13742
   Date: 2019/7/7

@@ -5,6 +5,7 @@ import com.model.Student;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class StudentDao extends BaseDao {
 
@@ -84,6 +85,27 @@ public class StudentDao extends BaseDao {
             pstmt.setString(1, id);
             pstmt.executeUpdate();
         } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean passChange(String sno, String oldPass, String newPass){
+        String changeSql = "UPDATE huangxy_StudentLogin08 SET hxy_Spass08 = ? WHERE hxy_Saccount08 = ? and hxy_Spass08 = ?";
+        Connection con = null;
+        try {
+            con = baseDao.getConnection();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            PreparedStatement pstmt = con.prepareStatement(changeSql);
+            pstmt.setString(1, newPass);
+            pstmt.setString(2, sno);
+            pstmt.setString(3, oldPass);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }

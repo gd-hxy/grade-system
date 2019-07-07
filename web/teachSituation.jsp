@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: 13742
   Date: 2019/7/7
-  Time: 10:55
+  Time: 17:56
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -36,44 +36,58 @@
     <div class="col-sm-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>总课程及总学分查询表</h5>
+          <h5>任课情况查询表</h5>
         </div>
         <div class="ibox-content">
           <div class="row" style="text-align: right;margin: 0px auto 0px auto;">
-            <p class="col-lg-2">总学分为<span class="right red-bg disabled" id="creditSumAll">${creditSumAll}</span></p>
-            <form role="form" class="form-inline" action="courseSearchServlet.do" method="get">
-              <input class="hidden" type="text" name="hide" id="hide">
-              <button type="submit" class="btn btn-primary" onclick="$('#creditSumAll').removeClass('disabled');">查询
+            <form role="form" class="form-inline" action="teacherCourseServlet.do" method="post">
+              <div class="form-group">
+                <label for="input-type">开课学年</label>
+                <select
+                    id="input-type"
+                    class="form-control"
+                    name="term"
+                    title="请选择"
+                    required
+                >
+                  <option value="2018_1" name="term">2018学年上学期</option>
+                  <option value="2018_2" name="term">2018学年下学期</option>
+                  <option value="2019_1" name="term">2019学年上学期</option>
+                  <option value="2019_2" name="term">2019学年下学期</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">查询
               </button>
             </form>
           </div>
-          <c:choose>
-          <c:when test="${not empty rankList}">
           <table class="table table-striped table-bordered table-hover">
             <thead>
             <tr>
-              <th>学号</th>
-              <th>课程名</th>
+              <th>教师编号</th>
+              <th>教师姓名</th>
+              <th>开课班级</th>
+              <th>课程编号</th>
+              <th>课程名称</th>
               <th>开课学期</th>
+              <th>学时</th>
               <th>学分</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${rankList}" var="rank">
+            <c:forEach items="${teachers}" var="teacher">
               <tr>
-                <td>${rank.getSno()}</td>
-                <td>${rank.getCname()}</td>
-                <td>${rank.getTerm()}</td>
-                <td>${rank.getCredit()}</td
+                <td>${teacher.getTno()}</td>
+                <td>${teacher.getTname()}</td>
+                <td>${teacher.getClassName()}</td>
+                <td>${teacher.getCno()}</td>
+                <td>${teacher.getCname()}</td>
+                <td>${teacher.getTerm()}</td>
+                <td>${teacher.getPeriod()}</td>
+                <td>${teacher.getCredit()}</td>
               </tr>
             </c:forEach>
             </tbody>
           </table>
-          </c:when>
-          <c:otherwise>
-            <div class="lead text-gray-800 text-center">暂无课程信息</div>
-          </c:otherwise>
-          </c:choose>
         </div>
       </div>
     </div>

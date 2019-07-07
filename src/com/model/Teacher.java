@@ -7,17 +7,16 @@ public class Teacher {
     private int Tage;
     private String Ttitle;
     private String Tphone;
+    private String Cno;
+    private String Cname;
+    private float avg;
+    private String classNo;
+    private String className;
+    private String Term;
+    private int period;
+    private float credit;
 
     public Teacher() {
-    }
-
-    public Teacher(String tno, String tname, char tgender, int tage, String ttitle, String tphone) {
-        Tno = tno;
-        Tname = tname;
-        Tgender = tgender;
-        Tage = tage;
-        Ttitle = ttitle;
-        Tphone = tphone;
     }
 
     public String getTno() {
@@ -66,5 +65,69 @@ public class Teacher {
 
     public void setTphone(String tphone) {
         Tphone = tphone;
+    }
+
+    public float getAvg() {
+        return avg;
+    }
+
+    public void setAvg(float avg) {
+        this.avg = avg;
+    }
+
+    public String getCno() {
+        return Cno;
+    }
+
+    public void setCno(String cno) {
+        Cno = cno;
+    }
+
+    public String getCname() {
+        return Cname;
+    }
+
+    public void setCname(String cname) {
+        Cname = cname;
+    }
+
+    public String getClassNo() {
+        return classNo;
+    }
+
+    public void setClassNo(String classNo) {
+        this.classNo = classNo;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public String getTerm() {
+        return Term;
+    }
+
+    public void setTerm(String term) {
+        Term = term;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public float getCredit() {
+        return credit;
+    }
+
+    public void setCredit(float credit) {
+        this.credit = credit;
     }
 }

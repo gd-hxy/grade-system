@@ -35,8 +35,8 @@
             var icon = "<i class='fa fa-times-circle'></i> ";
             $("#signupForm").validate({
                 rules: {
-                    bookname: "required",
-                    radioOption: "required",
+                    oldPass: "required",
+                    newPass: "required",
                     'checkBox[]': {
                         required:true,
                         maxlength:2
@@ -50,8 +50,8 @@
                     agree: "required"
                 },
                 messages: {
-                    bookname: icon + "请输入图书名称",
-                    radioOption: icon + "必须选择是否可以租借",
+                    oldPass: icon + "请输入原密码",
+                    newPass: icon + "请输入新密码",
                         'checkBox[]': {
                         required: icon + "必须选择图书的类型",
                         maxlength: icon + "最多选择两个类型"

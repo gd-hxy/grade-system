@@ -2,7 +2,7 @@
   Created by IntelliJ IDEA.
   User: 13742
   Date: 2019/7/7
-  Time: 10:55
+  Time: 16:53
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -36,43 +36,40 @@
     <div class="col-sm-12">
       <div class="ibox float-e-margins">
         <div class="ibox-title">
-          <h5>总课程及总学分查询表</h5>
+          <h5>课程平均分查询表</h5>
         </div>
         <div class="ibox-content">
           <div class="row" style="text-align: right;margin: 0px auto 0px auto;">
-            <p class="col-lg-2">总学分为<span class="right red-bg disabled" id="creditSumAll">${creditSumAll}</span></p>
-            <form role="form" class="form-inline" action="courseSearchServlet.do" method="get">
+            <form role="form" class="form-inline" action="avgScoreServlet.do" method="post">
               <input class="hidden" type="text" name="hide" id="hide">
-              <button type="submit" class="btn btn-primary" onclick="$('#creditSumAll').removeClass('disabled');">查询
+              <button type="submit" class="btn btn-primary">查询
               </button>
             </form>
           </div>
           <c:choose>
-          <c:when test="${not empty rankList}">
-          <table class="table table-striped table-bordered table-hover">
-            <thead>
-            <tr>
-              <th>学号</th>
-              <th>课程名</th>
-              <th>开课学期</th>
-              <th>学分</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${rankList}" var="rank">
-              <tr>
-                <td>${rank.getSno()}</td>
-                <td>${rank.getCname()}</td>
-                <td>${rank.getTerm()}</td>
-                <td>${rank.getCredit()}</td
-              </tr>
-            </c:forEach>
-            </tbody>
-          </table>
-          </c:when>
-          <c:otherwise>
-            <div class="lead text-gray-800 text-center">暂无课程信息</div>
-          </c:otherwise>
+            <c:when test="${not empty avgScore}">
+              <table class="table table-striped table-bordered table-hover">
+                <thead>
+                <tr>
+                  <th>课程编号</th>
+                  <th>课程名</th>
+                  <th>平均成绩</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${avgScore}" var="score">
+                  <tr>
+                    <td>${score.getCno()}</td>
+                    <td>${score.getCname()}</td>
+                    <td>${score.getAvg()}</td>
+                  </tr>
+                </c:forEach>
+                </tbody>
+              </table>
+            </c:when>
+            <c:otherwise>
+              <div class="lead text-gray-800 text-center">暂无课程信息</div>
+            </c:otherwise>
           </c:choose>
         </div>
       </div>

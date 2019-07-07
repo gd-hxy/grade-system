@@ -1,6 +1,7 @@
 package com.dao;
 
 import com.model.Rank;
+import com.model.Teacher;
 import com.model.classCourse;
 
 import java.sql.Connection;
@@ -110,5 +111,57 @@ public class SearchDao extends BaseDao {
             return null;
         }
         return classCourseArrayList;
+    }
+
+    public ArrayList<Teacher> searchAvgScore(String tno)
+    {
+        ArrayList<Teacher> teacherArrayList = new ArrayList<Teacher>();
+        String sql = "SELECT huangxy_Teach08.hxy_Cno08, hxy_Cname08, avgGrade.hxy_avg08 FROM avgGrade, huangxy_Teach08, huangxy_Course08 WHERE huangxy_Teach08.hxy_Tno08 = ? and huangxy_Teach08.hxy_Cno08 = huangxy_Course08.hxy_Cno08 and huangxy_Teach08.hxy_Cno08 = avgGrade.hxy_Cno08 group by huangxy_Teach08.hxy_Cno08, hxy_Cname08, avgGrade.hxy_avg08";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, tno);
+            ResultSet rst = pstmt.executeQuery();
+            while (rst.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setCno(rst.getString(1));
+                teacher.setCname(rst.getString(2));
+                teacher.setAvg(rst.getFloat(3));
+                teacherArrayList.add(teacher);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return teacherArrayList;
+    }
+
+    public ArrayList<Teacher> searchCourseThisTerm(String tno, String term)
+    {
+        ArrayList<Teacher> teacherArrayList = new ArrayList<Teacher>();
+        String sql = "SELECT * FROM teacherAndCourse WHERE hxy_Tno08 = ? and hxy_Cterm08 = ?";
+        try {
+            Connection con = baseDao.getConnection();
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, tno);
+            pstmt.setString(2, term);
+            ResultSet rst = pstmt.executeQuery();
+            while (rst.next()) {
+                Teacher teacher = new Teacher();
+                teacher.setTno(rst.getString(1));
+                teacher.setTname(rst.getString(2));
+                teacher.setClassName(rst.getString(3));
+                teacher.setCno(rst.getString(4));
+                teacher.setCname(rst.getString(5));
+                teacher.setTerm(rst.getString(6));
+                teacher.setPeriod(rst.getInt(7));
+                teacher.setCredit(rst.getFloat(8));
+                teacherArrayList.add(teacher);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return teacherArrayList;
     }
 }
